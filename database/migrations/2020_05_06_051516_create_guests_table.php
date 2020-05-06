@@ -19,13 +19,15 @@ class CreateGuestsTable extends Migration
             $table->string('last_name');
             $table->string('image')->nullable();
             $table->string('city')->nullable();
-            $table->string('area');
             $table->string('country');
             $table->string('number');
-            $table->string('email');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->string('gender')->nullable();
             $table->string('status')->default('0');
             $table->softDeletes();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
