@@ -28,5 +28,8 @@
     <link href="{{asset('backend/assets/css/theme-color.css')}}" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="{{asset('backend/assets/img/favicon.ico')}}" />
+
+    <!-- specific page css -->
+    @yield('css')
 </head>
 <!-- END HEAD -->

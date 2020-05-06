@@ -13,11 +13,5 @@
             </div>
         </div>
         <!-- end page content -->
-
-
-
-
-
-
 @endsection
 

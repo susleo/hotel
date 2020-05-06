@@ -31,3 +31,6 @@
 <script src="{{asset('backend/assets/plugins/morris/raphael-min.js')}}" ></script>
 <script src="{{asset('backend/assets/js/pages/chart/morris/morris_home_data.js')}}" ></script>
 <!-- end js include path -->
+
+<!-- specific page js -->
+@yield('js')
