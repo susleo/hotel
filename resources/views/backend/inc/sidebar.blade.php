@@ -37,25 +37,11 @@
                     <span>-- Main</span>
                 </li>
                 <li class="nav-item start active">
-                    <a href="#" class="nav-link nav-toggle">
+                    <a href="{{route('adminhome')}}" class="nav-link nav-toggle">
                         <i class="material-icons">dashboard</i>
                         <span class="title">Dashboard</span>
                         <span class="selected"></span>
-                        <span class="arrow open"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item active">
-                            <a href="index.html" class="nav-link ">
-                                <span class="title">Dashboard 1</span>
-                                <span class="selected"></span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="dashboard2.html" class="nav-link ">
-                                <span class="title">Dashboard 2</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-toggle">
@@ -109,18 +95,18 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-toggle">
                         <i class="material-icons">vpn_key</i>
-                        <span class="title">Rooms</span>
+                        <span class="title">Rooms Type</span>
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item">
-                            <a href="add_room.html" class="nav-link ">
-                                <span class="title">Add Room Details</span>
+                            <a href="{{route('room_type.index')}}" class="nav-link ">
+                                <span class="title">View All Rooms Type</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="all_rooms.html" class="nav-link ">
-                                <span class="title">View All Rooms</span>
+                            <a href="{{route('room_type.create')}}" class="nav-link ">
+                                <span class="title">Add Room Type</span>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomsTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->integer('room_number');
             $table->unsignedBigInteger('room_type_id');
-            $table->integer('room_status')->default(0);
-
+            $table->string('image');
+            $table->string('captions');
+            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('room_type_id')
-                ->references('id')->on('room_type')
+                ->references('id')->on('room_types')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -35,6 +35,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('images');
     }
 }

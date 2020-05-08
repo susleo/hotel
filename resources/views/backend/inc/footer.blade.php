@@ -26,10 +26,8 @@
 <script src="{{asset('backend/assets/plugins/material/material.min.js')}}"></script>
 <!-- animation -->
 <script src="{{asset('backend/assets/js/pages/ui/animations.js')}}" ></script>
-<!-- morris chart -->
-<script src="{{asset('backend/assets/plugins/morris/morris.min.js')}}" ></script>
-<script src="{{asset('backend/assets/plugins/morris/raphael-min.js')}}" ></script>
-<script src="{{asset('backend/assets/js/pages/chart/morris/morris_home_data.js')}}" ></script>
+
+
 <!-- end js include path -->
 
 <!-- specific page js -->

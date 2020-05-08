@@ -14,8 +14,7 @@
     <!--bootstrap -->
     <link href="{{asset('backend/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('backend/assets/plugins/summernote/summernote.css')}}" rel="stylesheet">
-    <!-- morris chart -->
-    <link href="{{asset('backend/assets/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Material Design Lite CSS -->
     <link rel="stylesheet" href="{{asset('backend/assets/plugins/material/material.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/assets/css/material_style.css')}}">
