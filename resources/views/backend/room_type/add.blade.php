@@ -47,7 +47,8 @@
                                 <li class = "mdl-menu__item"><i class="material-icons">favorite</i>Something else here</li>
                             </ul>
                         </div>
-                        <form enctype="multipart/form-data" action="{{route('room_type.store')}}" method="POST" >
+{{--                        {!! Form::open([ 'route' => [ 'room_type.store' ], 'files' => true, 'enctype' => 'multipart/form-data', ]) !!}--}}
+                        <form enctype="multipart/form-data" action="{{route('room_type.store')}}" method="POST" file="true">
                             @csrf
                         <div class="card-body row">
                             <div class="col-lg-6 p-t-20">
@@ -90,14 +91,15 @@
                             </div>
                             <div class="col-lg-12 p-t-20">
                                 <label class="control-label col-md-3">Upload Room Photos</label>
-                                <form class = "dropzone" id="id_dropzone" name="image" multiple>
-                                    <div class="dz-message">
-                                        <div class="dropIcon">
-                                            <i class="material-icons">cloud_upload</i>
-                                        </div>
-                                        <h3>Drop files here or click to upload.</h3>
-                                    </div>
-                                </form>
+{{--                                <div class = "dropzone" id="id_dropzone" >--}}
+{{--                                    <div class="dz-message">--}}
+{{--                                        <div class="dropIcon">--}}
+{{--                                            <i class="material-icons">cloud_upload</i>--}}
+{{--                                        </div>--}}
+{{--                                        <h3>Drop files here or click to upload.</h3>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <input class = "mdl-textfield__input" type = "file" id = "image" name="image">
                             </div>
 
 
@@ -106,8 +108,6 @@
                                 <label class="checkbox-inline">
                                     <input type="checkbox" checked data-toggle="toggle" data-onstyle="danger" data-size="large">
                                 </label>
-
-                            </span>
                             </div>
                             <div class="col-lg-12 p-t-20 text-center">
                                 <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
@@ -115,6 +115,7 @@
                             </div>
                         </div>
                         </form>
+{{--                        {!! Form::close() !!}--}}
                     </div>
                 </div>
             </div>

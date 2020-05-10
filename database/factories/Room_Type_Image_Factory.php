@@ -13,7 +13,7 @@ $factory->define(Image::class, function (Faker $faker) {
         'room_type_id'=> function(){
             return RoomType::all()->random();
         } ,
-        'image'=>$faker->randomElement($images),
+        'image'=>'storage/images/room_types/'.$faker->randomElement($images),
         'captions'=> $faker->sentence,
         'status'=>true,
     ];

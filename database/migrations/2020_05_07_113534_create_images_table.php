@@ -15,10 +15,10 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('room_type_id');
+            $table->unsignedBigInteger('room_type_id')->nullable();
             $table->string('image');
-            $table->string('captions');
-            $table->boolean('status');
+            $table->string('captions')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('room_type_id')

@@ -41,7 +41,7 @@ class RoomTypeController extends Controller
     public function store(CreateRoomTypeRequest $request)
     {
         //
-          $data = [
+          $data_room = [
               'room_type'=>$request->room_type,
               'description'=>$request->description,
               'max_adults'=>$request->max_adults,
@@ -49,20 +49,21 @@ class RoomTypeController extends Controller
               'price'=>$request->price,
               'status'=>true,
           ];
+        $room_type = RoomType::create($data_room);
 
-           $room_type =  RoomType::create($data);
+ ////Image
+        if($request->hasfile('image'))
+        {
+          $image = $request->image;
+          $name = $image->getClientOriginalName();
 
-        if ($image = $request->file('image')) {
-            foreach ($image as $files) {
-                $destinationPath = public_path('storage/images/room_types'); // upload path
-                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                $files->move($destinationPath, $profileImage);
-                $insert[]['image'] = "$profileImage";
-            }
+         $filename=  $image->move(('storage/images/room_types'), $name);
+          Image::create([
+          'room_type_id' => $room_type->id,
+          'image' => $filename
+                ]);
         }
-
-        $check = $room_type->Image::insert($insert);
-
+        return back();
     }
 
     /**

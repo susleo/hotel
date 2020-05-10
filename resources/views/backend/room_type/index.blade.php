@@ -93,7 +93,7 @@
                                     <tr class="odd gradeX">
                                         <td class="center">{{$i}}</td>
                                         <td>
-                                            <img src="storage/images/room_types/{{$imd->image}}" alt="Images" class="small-img" >
+                                            <img src="{{$imd->image}}" alt="Images" class="small-img" >
                                         </td>
                                         <td class="center">{{$rt->room_type}}</td>
                                         <td class="center">{{$rt->price}}</td>
