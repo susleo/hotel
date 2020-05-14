@@ -11,7 +11,19 @@
     <!-- start sidebar menu -->
 @include('backend.inc.sidebar')
 <!-- end sidebar menu -->
+
 @yield('body')
+{{--    {!! Toastr::message() !!}--}}
+    @if (count($errors) > 0)
+{{--        <li>{{$errors}}</li>--}}
+        <ul>
+        @foreach($errors->all() as $error)
+{{--            <li>{{$error}}</li>--}}
+                <li> {{Toastr::error($error)}}</li>
+            @endforeach
+        </ul>
+{{--        <li>{{ $errors }}  Toastr::success('Post added successfully :)','Success');</li>--}}
+   @endif
 
 <!-- start right sidebar sidebar -->
 @include('backend.inc.right_sidebar')

@@ -20,7 +20,7 @@ class CreateRoomTypesTable extends Migration
             $table->string('price');
             $table->integer('max_adults');
             $table->integer('max_children')->nullable()->default(0);
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->nullable()->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

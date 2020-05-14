@@ -89,7 +89,7 @@
                                     @php $i = 1 @endphp
                                     @foreach($room_types as $rt)
 {{--                                       {{ ($images =$rt->images->where('status', 1))}}--}}
-                                          @foreach($rt->images->where('status', 1) as $imd)
+                                          @foreach($rt->images->where('isPrimary', 1) as $imd)
                                     <tr class="odd gradeX">
                                         <td class="center">{{$i}}</td>
                                         <td>
@@ -106,8 +106,9 @@
                                             <span class="label label-sm label-danger">InActive </span>
                                             @endif
                                         </td>
+
                                         <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
+                                            <a href="{{route('room_type.edit',$rt->id)}}" class="btn btn-tbl-edit btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <a class="btn btn-tbl-delete btn-xs">

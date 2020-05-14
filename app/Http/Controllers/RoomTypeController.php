@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RoomType\CreateRoomTypeRequest;
 use App\Image;
 use App\RoomType;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class RoomTypeController extends Controller
@@ -29,6 +30,7 @@ class RoomTypeController extends Controller
     public function create()
     {
         //
+//        Toastr::success('Messages in here', 'Title');
         return view('backend.room_type.add');
     }
 
@@ -41,29 +43,49 @@ class RoomTypeController extends Controller
     public function store(CreateRoomTypeRequest $request)
     {
         //
+//        dd($request->all());
           $data_room = [
               'room_type'=>$request->room_type,
               'description'=>$request->description,
               'max_adults'=>$request->max_adults,
               'max_children'=>$request->max_children,
               'price'=>$request->price,
-              'status'=>true,
+              'status'=> $request->status,
           ];
         $room_type = RoomType::create($data_room);
 
  ////Image
-        if($request->hasfile('image'))
-        {
-          $image = $request->image;
-          $name = $image->getClientOriginalName();
 
-         $filename=  $image->move(('storage/images/room_types'), $name);
-          Image::create([
-          'room_type_id' => $room_type->id,
-          'image' => $filename
-                ]);
+        if($request->hasfile('image')) {
+            $image = $request->image;
+            if(count($image) === 1){
+                $isPrime =  $dataa['isPrimary'] = true;
+            }else{
+//                return $image[0]['isPrimary'];
+//                $sfirst = $image[0];
+//                $isPrime= $sfirst ;
+            }
+            foreach ($image as $photo) {
+//                dd($photo);
+                $name = $photo->getClientOriginalName();
+                $filename = $photo->move(('storage/images/room_types/'), $name);
+//                if(count($image) === 1){
+//                   $isPrime =  $dataa['isPrimary'] = true;
+//                }else{
+//                  $isPrime= false;
+//                }
+
+                $dataa = [
+                    'room_type_id' => $room_type->id,
+                    'image' => $filename,
+                    'isPrimary'=>$isPrime,
+                ];
+                Image::create($dataa);
+            }
         }
-        return back();
+
+          Toastr::success('Room Created Success');
+        return  redirect(route('room_type.index'));
     }
 
     /**
@@ -83,9 +105,10 @@ class RoomTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(RoomType $room_type)
     {
         //
+        return view('backend.room_type.add')->with('room_type',$room_type);
     }
 
     /**
@@ -110,4 +133,31 @@ class RoomTypeController extends Controller
     {
         //
     }
+
+    public function imageStore(Request $request)
+    {
+        //
+        $request->validate([
+            'image'=>'required',
+        ]);
+        if($request->hasfile('file'))
+        {
+
+//            $image = $request->file;
+//            foreach ($image as $photo) {
+//                $name = $photo->getClientOriginalName();
+//                $filename=  $photo->move(('storage/images/room_types/'), $name);
+//                Image::create([
+//                    'room_type_id' => 2,
+//                    'image' => $filename
+//                ]);
+//                return response()->json(['uploaded' => '/storage/images/room_types/'.$name]);
+//            }
+
+
+        }
+    }
+
+
+
 }

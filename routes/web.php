@@ -23,4 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin','AdminController@index')->name('adminhome');
 
+Route::post('imageStore', 'RoomTypeController@imageStore')->name('room_type.imageStore');
 Route::resource('/room_type','RoomTypeController');

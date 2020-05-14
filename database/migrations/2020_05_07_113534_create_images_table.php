@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('room_type_id')->nullable();
             $table->string('image');
-            $table->string('captions')->nullable();
+            $table->boolean('isPrimary')->nullable()->default(false);
             $table->boolean('status')->default(true);
             $table->timestamps();
 

@@ -27,6 +27,8 @@
     <link href="{{asset('backend/assets/css/theme-color.css')}}" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="{{asset('backend/assets/img/favicon.ico')}}" />
+    <!-- toastr -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
     <!-- specific page css -->
     @yield('css')

@@ -30,5 +30,9 @@
 
 <!-- end js include path -->
 
+<!--Toaster CDN--->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+
 <!-- specific page js -->
 @yield('js')

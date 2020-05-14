@@ -4,7 +4,7 @@ namespace App\Http\Requests\RoomType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRoomTypeRequest extends FormRequest
+class UpdateRoomTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,20 +23,14 @@ class CreateRoomTypeRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
+            //
             'room_type'=>'required',
             'description'=>'required',
             'price'=>'required | numeric',
             'max_adults'=>'required | numeric',
             'max_children'=>'required | numeric',
-//            'status'=>'required',
-            'image'=>'required',
+            'image'=>'image|mimes:jpeg,jpg,bmp,png|size:2000 '
         ];
-//        $photos = count($this->input('image'));
-//        foreach(range(0, $photos) as $index) {
-//            $rules['image.' . $index] = 'image|mimes:jpeg,bmp,png|max:2000';
-//        }
-
-        return $rules;
     }
 }
