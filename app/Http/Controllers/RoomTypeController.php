@@ -58,27 +58,15 @@ class RoomTypeController extends Controller
 
         if($request->hasfile('image')) {
             $image = $request->image;
-            if(count($image) === 1){
-                $isPrime =  $dataa['isPrimary'] = true;
-            }else{
-//                return $image[0]['isPrimary'];
-//                $sfirst = $image[0];
-//                $isPrime= $sfirst ;
-            }
             foreach ($image as $photo) {
 //                dd($photo);
                 $name = $photo->getClientOriginalName();
-                $filename = $photo->move(('storage/images/room_types/'), $name);
-//                if(count($image) === 1){
-//                   $isPrime =  $dataa['isPrimary'] = true;
-//                }else{
-//                  $isPrime= false;
-//                }
-
+                $filename = $photo->move(('storage/images/room_types/'.$room_type->id), $name);
                 $dataa = [
                     'room_type_id' => $room_type->id,
                     'image' => $filename,
-                    'isPrimary'=>$isPrime,
+                    'isPrimary'=> (\Arr::first($image) == $photo) ? true : false,
+
                 ];
                 Image::create($dataa);
             }
@@ -156,6 +144,16 @@ class RoomTypeController extends Controller
 
 
         }
+    }
+
+    public function imageDelete($id)
+    {
+        //
+       $img =  Image::find($id);
+       $img->delete();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 
 

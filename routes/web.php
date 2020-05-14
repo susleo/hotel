@@ -1,5 +1,6 @@
 <?php
 
+use App\RoomType;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin','AdminController@index')->name('adminhome');
 
 Route::post('imageStore', 'RoomTypeController@imageStore')->name('room_type.imageStore');
+Route::delete('imageDelete/{id}', 'RoomTypeController@imageDelete')->name('room_type.imageDelete');
 Route::resource('/room_type','RoomTypeController');

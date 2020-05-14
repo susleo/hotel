@@ -8,6 +8,8 @@
     <link href="{{asset('backend/assets/css/pages/formlayout.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
+
+
     <!-- start page content -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -42,8 +44,8 @@
                                 <li class = "mdl-menu__item"><i class="material-icons">favorite</i>Something else here</li>
                             </ul>
                         </div>
-{{--                        {!! Form::open([ 'route' => [ 'room_type.store' ], 'files' => true, 'enctype' => 'multipart/form-data', ]) !!}--}}
-                        <form enctype="multipart/form-data" action="{{route('room_type.store')}}" method="POST" file="true">
+                        {!! Form::open([ 'route' => [ 'room_type.store' ], 'files' => true, 'enctype' => 'multipart/form-data', ]) !!}
+{{--                        <form enctype="multipart/form-data" action="{{route('room_type.store')}}" method="POST" file="true">--}}
                             @csrf
                         <div class="card-body row">
                             <div class="col-lg-6 p-t-20">
@@ -95,33 +97,18 @@
                             </div>
 
                             <div class="col-lg-12 p-t-20">
+
                                 <label class="control-label col-md-3">Upload Room Photos</label>
+                                <div id="image_preview">
+                                    <div id= "image"  class="file">
+                                        @foreach($room_type->images as $img)
+                                            <img src="{{asset($img->image)}}" alt="" height="200px" width="300px">
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <input  type = "file" id = "image" name="image[]"
                                 multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
                             </div>
-                            @if(isset($room_type))
-                            <div id="image_preview">
-                                <div class="col-lg-12 p-t-20">
-                                    <label class="control-label col-md-12">Room Photos</label>
-                                    <div class="row">
-                                        @foreach($room_type->images as $img)
-                                            <div class="jumbotron">
-                                                <img src="{{asset($img->image)}}" height="200px" width="300px">
-                                                <div>
-                                                    <a href="{{ route('room_type.imageDelete',$img->id) }}" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" id="deleteImage" data-id="{{ $img->id }}">
-                                                        <i class="fa fa-trash-o">Delete This</i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            @endif
-
 
                             <div class="col-lg-12 p-t-20">
                                 <label class="control-label col-lg-4">Status</label>
@@ -138,8 +125,8 @@
                                 <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
                             </div>
                         </div>
-                        </form>
-{{--                        {!! Form::close() !!}--}}
+{{--                        </form>--}}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -147,7 +134,6 @@
     </div>
     <!-- end page content -->
     @endsection
-
 @section('js')
     <!-- dropzone -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
@@ -155,40 +141,7 @@
 {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>--}}
 {{--    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>--}}
     <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $("body").on("click","#deleteImage",function(e){
-
-                if(!confirm("Do you really want to do this?")) {
-                    return false;
-                }
-
-                e.preventDefault();
-                var id = $(this).data("id");
-                // var id = $(this).attr('data-id');
-                var token = $("meta[name='csrf-token']").attr("content");
-                var url = e.target;
-
-                $.ajax(
-                    {
-                        url: "/imageDelete/"+id, //or you can use url: "company/"+id,
-                        type: 'delete',
-                        data: {
-
-                            "id": id,
-                            "_token": token,
-                        },
-                        success: function (){
-                            console.log("it Works");
-                        }
-
-                    });
-                return false;
-            });
-
-
-        });
+            console.log('hello');
             function getValue(){
                 if (document.getElementById('togBtn').checked) {
                     console.log("Checked");
@@ -202,24 +155,19 @@
 
             }
 
+            var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+                url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
             $("#image").fileinput({
                 theme: 'fa',
                 uploadUrl: '{{route("room_type.imageStore")}}',
-                uploadExtraData: function() {
-                    return {
-                        _token: $("input[name='_token']").val(),
-                    };
-                },
+                initialPreview: [url1, url2],
+                initialPreviewAsData: true,
 
-                allowedFileExtensions: ['jpg','jpeg' ,'png', 'gif'],
+                deleteUrl: '{{route("room_type.imageDelete")}}',
                 overwriteInitial: false,
-                maxFileSize:2000,
-                maxFilesNum: 10,
-                slugCallback: function (filename) {
-                      return filename.replace('(', '_').replace(']', '_');
-                }
+                maxFileSize: 2000,
+                initialCaption: "The Moon and the Earth"
             });
-
     </script>
     @endsection
 
